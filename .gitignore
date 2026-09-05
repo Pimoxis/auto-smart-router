@@ -1,0 +1,6 @@
+# Local project tooling and installed skill copies
+.agents/
+.specify/
+.codex/
+__pycache__/
+*.pyc

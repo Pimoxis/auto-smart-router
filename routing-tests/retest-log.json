@@ -1,0 +1,18 @@
+{
+  "tools_used": [
+    "PowerShell Get-Content",
+    "PowerShell Import-Csv, Where-Object, Group-Object, Measure-Object, ConvertTo-Json"
+  ],
+  "routing": {
+    "parent_model": "gpt-5.6-terra",
+    "parent_reasoning_effort": "medium",
+    "selection": "assigned by test harness",
+    "child_agents": []
+  },
+  "checks": [
+    "Excluded rows where status equals void.",
+    "Kept void invoice IDs in input order.",
+    "Summed paid department totals and verified they equal grand_total_cents.",
+    "Verified paid_count plus void count equals 120 source rows."
+  ]
+}

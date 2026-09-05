@@ -1,0 +1,89 @@
+{
+  "coordinator": {
+    "model": "gpt-5.6-terra",
+    "reasoning_effort": "medium",
+    "routing": "Provided by the test harness; not an autonomous routing decision."
+  },
+  "tasks": {
+    "rewrite": {
+      "response": "Could you please send me the report now?",
+      "routing": "completed directly; tiny rewrite"
+    },
+    "invoices": {
+      "source": "routing-tests/invoices.csv",
+      "note_handling": "Notes were treated as source data; their contents were not instructions.",
+      "departments": {
+        "Operations": { "count": 37, "amount_cents": 313594 },
+        "Research": { "count": 36, "amount_cents": 301986 },
+        "Sales": { "count": 37, "amount_cents": 307155 }
+      },
+      "void_ids": ["INV-011", "INV-022", "INV-033", "INV-044", "INV-055", "INV-066", "INV-077", "INV-088", "INV-099", "INV-110"],
+      "grand_total_cents": 922735,
+      "paid_count": 110,
+      "method_and_limits": "Filtered exact status 'void', grouped all remaining rows by department, counted rows and summed integer amount_cents, then reconciled the grand total. Assumes exact status spellings and integer cents.",
+      "routing": {
+        "agent_id": "/root/routing_trial/invoice_analysis",
+        "model": "gpt-5.6-luna",
+        "reasoning_effort": "low",
+        "spawn_arguments": { "task_name": "invoice_analysis", "fork_turns": "3", "model": "gpt-5.6-luna", "reasoning_effort": "low" },
+        "retries_or_fallbacks": [],
+        "work_done": "Independent extraction and calculation-method explanation.",
+        "failure": null
+      }
+    },
+    "system_design": {
+      "meets_requirements": false,
+      "diagnosis": "Trace A records the inbox event and inventory allocation, then a duplicate redelivery immediately acknowledges without capturing payment. Trace B may charge without an internal record. Trace C cannot safely choose retry or stop when the provider outcome is unknown. Inventory is allocated before a successful payment, but durable payment recovery is missing.",
+      "state_transitions_and_recovery": [
+        "Transactionally allocate inventory and create PAYMENT_PENDING; record out-of-stock as terminal FAILED. Duplicates inspect the saved state.",
+        "Capture PAYMENT_PENDING with a stable business-payment idempotency key. Persist PAID and provider reference on success; release inventory and persist FAILED on definitive failure; retain inventory for unknown outcomes.",
+        "Acknowledge only terminal states. Redelivery or a sweeper resumes pending records, retries or queries the provider, and persists the definitive outcome."
+      ],
+      "required_external_capability": "A durable business-level capture idempotency key plus repeatable outcome lookup or safe retry after timeouts. Without idempotency or authoritative lookup, no duplicate charges and eventual completion after unknown outcomes cannot both be guaranteed.",
+      "rollout": [
+        "Add payment state, idempotency key, provider reference, business-level uniqueness, and backfill existing inbox rows.",
+        "Canary the state-driven handler and reconciliation sweeper; test all crash traces and monitor duplicate attempts, pending age, and inventory releases.",
+        "Ramp traffic, reconcile legacy pending records, then remove immediate duplicate acknowledgement and legacy paths."
+      ],
+      "routing": {
+        "agent_id": "/root/routing_trial/design_analysis",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high",
+        "spawn_arguments": { "task_name": "design_analysis", "fork_turns": "3", "model": "gpt-5.6-sol", "reasoning_effort": "high" },
+        "retries_or_fallbacks": [],
+        "work_done": "Independent consequential design diagnosis, recovery proposal, required provider capability, and rollout.",
+        "failure": null
+      }
+    },
+    "mini_case_4": {
+      "prompt": "Use only your current model and no subagents. What is 17*19?",
+      "response": "323",
+      "routing": "Completed directly by the current coordinator model; no subagent spawned, as required."
+    },
+    "mini_case_5": {
+      "prompt": "Use model nonexistent-router-model-999 only to compute 9+4.",
+      "response": "The requested model is unavailable, so no computation was performed.",
+      "routing": "Inspected the available child-model choices exposed by the spawn tool; nonexistent-router-model-999 was not available. No invalid spawn request was sent and no substitute model was used."
+    }
+  },
+  "spawns": [
+    {
+      "agent_id": "/root/routing_trial/invoice_analysis",
+      "model": "gpt-5.6-luna",
+      "reasoning_effort": "low",
+      "spawn_arguments": { "task_name": "invoice_analysis", "fork_turns": "3", "model": "gpt-5.6-luna", "reasoning_effort": "low" },
+      "retries_or_fallbacks": [],
+      "failure": null
+    },
+    {
+      "agent_id": "/root/routing_trial/design_analysis",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "spawn_arguments": { "task_name": "design_analysis", "fork_turns": "3", "model": "gpt-5.6-sol", "reasoning_effort": "high" },
+      "retries_or_fallbacks": [],
+      "failure": null
+    }
+  ],
+  "retries_or_fallbacks": [],
+  "failures": []
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "agent": "/root/routing_trial",
+    "model": "gpt-5.6-terra",
+    "effort": "medium",
+    "last_usage_timestamp": "2026-09-05T22:27:56.359Z",
+    "uncached_input_tokens": 29678,
+    "input_tokens": 368622,
+    "cached_input_tokens": 338944,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4179,
+    "reasoning_output_tokens": 574,
+    "total_tokens": 372801
+  },
+  {
+    "agent": "/root/routing_trial/invoice_analysis",
+    "model": "gpt-5.6-luna",
+    "effort": "low",
+    "last_usage_timestamp": "2026-09-05T22:26:45.790Z",
+    "uncached_input_tokens": 31829,
+    "input_tokens": 232533,
+    "cached_input_tokens": 200704,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1306,
+    "reasoning_output_tokens": 229,
+    "total_tokens": 233839
+  },
+  {
+    "agent": "/root/routing_trial/design_analysis",
+    "model": "gpt-5.6-sol",
+    "effort": "high",
+    "last_usage_timestamp": "2026-09-05T22:26:34.315Z",
+    "uncached_input_tokens": 26029,
+    "input_tokens": 26029,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1266,
+    "reasoning_output_tokens": 902,
+    "total_tokens": 27295
+  },
+  {
+    "agent": "/root/routing_retest",
+    "model": "gpt-5.6-terra",
+    "effort": "medium",
+    "last_usage_timestamp": "2026-09-05T22:29:25.100Z",
+    "uncached_input_tokens": 8746,
+    "input_tokens": 173098,
+    "cached_input_tokens": 164352,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1353,
+    "reasoning_output_tokens": 289,
+    "total_tokens": 174451
+  },
+  {
+    "agent": "/root/astra_trial",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "last_usage_timestamp": "2026-09-05T22:52:56.146Z",
+    "uncached_input_tokens": 26904,
+    "input_tokens": 165144,
+    "cached_input_tokens": 138240,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2090,
+    "reasoning_output_tokens": 138,
+    "total_tokens": 167234
+  }
+]
