@@ -1,5 +1,15 @@
 # Live routing test
 
+## September 28, 2026: final GPT-6-only mapping
+
+After the user clarified that Luna was intended instead of Terra, active routing now uses GPT-6 Luna / low for narrow work, GPT-6 Luna / medium for ordinary work, GPT-6 Sol / high for hard questions, and GPT-6 Astra / high for exceptional reasoning. Older-generation fallback is disallowed. A skill still cannot silently switch an older parent model; it requests a supported GPT-6 selection before routed execution.
+
+Fresh `luna6_check` executed on `gpt-6-luna` / medium, confirmed by local session metadata. It used PowerShell directly to process all 120 invoice rows. The independent Python verifier matched every department count, total, void ID, and grand total: 110 non-void rows, 922,735 cents. No child was spawned.
+
+The first policy test failed because the worker opened the stale installed copy instead of the updated distribution source. The installed copy was synchronized and byte-compared with the source. A fresh `luna6_policy` worker on GPT-6 Luna / medium then returned all four updated assignments, rejected older-model fallback and silent pin substitution, required GPT-6 selection for an older parent, and chose local tools for exact arithmetic. The no-delegation fallback wording was also made explicitly conditional on a GPT-6 parent.
+
+Evidence: `routing-tests/extraction-luna6.json`, `routing-tests/luna6-check.md` (original failed policy answers retained), and `routing-tests/luna6-policy-retest.md`. The package checker now rejects any active model IDs outside Luna, Sol, and Astra in the GPT-6 family. Sol's live high-effort check is below; Astra's earlier explicit test remains historical. This update does not claim new cost savings or automatic parent switching.
+
 ## September 28, 2026: GPT-6 Sol update
 
 The hard-question preference was upgraded to `gpt-6-sol` / high. A fresh `sol6_check` worker ran successfully with that exact model and effort, confirmed from local session metadata. It independently diagnosed the three queue/payment crash cases and proposed durable pending state, retained stock reservations, stable provider idempotency, and recovery. This is a bounded reasoning check, not a running payment-system test.

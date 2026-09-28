@@ -16,6 +16,9 @@ assert len(metadata["name"]) <= 64
 assert 0 < len(metadata["description"]) <= 1024
 assert not any(char in metadata["description"] for char in "<>\n")
 assert "TODO" not in text
+assert set(re.findall(r"`(gpt-[a-z0-9.-]+)`", text)) == {
+    "gpt-6-luna", "gpt-6-sol", "gpt-6-astra"
+}, "Active routing must use only the approved GPT-6 models"
 for target in re.findall(r"\]\(([^)]+)\)", body):
     if "://" not in target:
         assert (skill / target).is_file(), target

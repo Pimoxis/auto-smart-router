@@ -20,17 +20,17 @@ Use $codex-smart-router for this task: [your task].
 
 | Work | Preferred model / reasoning |
 | --- | --- |
-| Small tasks and exact operations handled by tools | Current main-chat model |
-| Bounded work requiring simple model interpretation | GPT-5.6 Luna / Low |
-| Ordinary multi-step work | Current parent; Terra / Medium for suitable independent work |
+| Small tasks and exact operations handled by tools | Current GPT-6 main-chat model |
+| Bounded work requiring simple model interpretation | GPT-6 Luna / Low |
+| Ordinary multi-step work | Current GPT-6 parent; GPT-6 Luna / Medium for suitable independent work |
 | Hard diagnosis, ambiguous synthesis, or consequential design | GPT-6 Sol / High |
 | Exceptionally difficult reasoning | GPT-6 Astra / High |
 
-These are preferences, subject to available tools, model access, and explicit user choices. The skill can select supported child models; it does not automatically switch the main chat's model. It preserves existing service-tier settings.
+Only GPT-6 Luna, Sol, and Astra are selected; no older-model fallback. These are preferences, subject to available tools, model access, and explicit user choices. The skill can select supported child models; it does not automatically switch the main chat's model. It preserves existing service-tier settings.
 
 ## Validation
 
-Live tests exercised Terra, Luna, Sol, and explicitly selected Astra. Tests covered extraction correctness, model restrictions, and treating embedded source instructions as data. A demonstrated efficiency fix made exact CSV aggregation run directly through local tools.
+The test report separates current GPT-6 checks from historical GPT-5.6 tests. Tests cover extraction correctness, model restrictions, and treating embedded source instructions as data. A demonstrated efficiency fix made exact CSV aggregation run directly through local tools.
 
 Read the [test report](codex-smart-router/TEST_RESULTS.md) for measured token counts and limitations. Dollar savings have not been established; the recorded runs are not a controlled benchmark.
 

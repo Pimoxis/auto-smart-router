@@ -15,7 +15,7 @@ This skill requests delegation of worthwhile, bounded subtasks and model overrid
 
 - If the host supports choosing a child model, use the matching available model and supported reasoning effort.
 - If only configured custom agents are available, use an existing role whose model, tools, permissions, and instructions fit. Do not invent agent names.
-- If neither is available, work directly. Say once that model routing is unavailable; do not claim a switch or launch nested CLI sessions as a workaround.
+- If neither delegation mechanism is available, work directly only when the parent is already a supported GPT-6 model. Otherwise request a supported GPT-6 selection before routed work. Say once that model routing is unavailable; do not claim a switch or launch nested CLI sessions as a workaround.
 - Changing a child's model does not change the parent. Change the main model only through an explicitly available session control. Otherwise recommend the model picker when a switch would materially help, and continue useful work on the current model.
 
 ## Choose the next useful unit of work
@@ -24,13 +24,13 @@ Read enough of the actual task and inputs to understand its constraints before r
 
 Before delegating, check whether an available deterministic tool can finish the work directly. Exact CSV totals, sorting, filtering, and known-format transformations normally belong in a short local script or existing tool, not another model. Input length alone does not justify a worker; delegate extraction when interpreting the content actually requires model judgment.
 
-The model names below are starting preferences, not a price ranking or guaranteed availability. Use equivalent available models when necessary, unless the user pinned a specific model. Keep the current model if no suitable alternative is known.
+The model names below are starting preferences, not a price ranking or guaranteed availability. Select only `gpt-6-luna`, `gpt-6-sol`, or `gpt-6-astra`; do not fall back to older generations. Respect explicit model pins without silent substitution. If none of these models is available, report the limitation. If the parent is running an older model, request a supported GPT-6 selection through the model picker before executing the routed task; do not claim this skill can change the parent by itself.
 
 | Work | Preferred path | Starting model / effort when selectable |
 | --- | --- | --- |
-| Tiny answer, short rewrite, known file lookup, small edit | Parent directly; no handoff | Current model |
-| Substantial, well-specified extraction, classification, formatting, repetitive edits, or narrow source gathering | One bounded worker if the handoff is worthwhile | `gpt-5.6-luna` / low |
-| Ordinary multi-step drafting, analysis, implementation, document preparation, or planning | Parent directly; independent medium-complexity work may use a worker | `gpt-5.6-terra` / medium |
+| Tiny answer, short rewrite, known file lookup, small edit | Parent directly; no handoff | Current supported GPT-6 model |
+| Substantial, well-specified extraction, classification, formatting, repetitive edits, or narrow source gathering | One bounded worker if the handoff is worthwhile | `gpt-6-luna` / low |
+| Ordinary multi-step drafting, analysis, implementation, document preparation, or planning | Parent directly; independent medium-complexity work may use a worker | `gpt-6-luna` / medium |
 | Ambiguous synthesis, difficult diagnosis, conflicting evidence, subtle logic, or consequential design | Solve the hard question with a capable model; avoid delegating the routine remainder to it | `gpt-6-sol` / high |
 | Exceptionally difficult cross-domain reasoning or a hard question still unresolved after an evidence-based attempt | Narrow escalation if the parent is not already equally capable | `gpt-6-astra` / high |
 

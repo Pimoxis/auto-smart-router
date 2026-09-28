@@ -34,17 +34,17 @@ That is an instruction preference, not a runtime hook. Higher-priority host rest
 
 ## Models and controls
 
-The starting mapping is GPT-5.6 Luna for narrow work, GPT-5.6 Terra for ordinary work, GPT-6 Sol for hard questions, and GPT-6 Astra for exceptional reasoning. It is a heuristic based on capabilities, not a benchmark or verified price ranking. The installed CLI's bundled catalog contains these IDs and the selected reasoning levels as of September 28, 2026. Account availability can differ; the skill checks the host's exposed choices before using them.
+The starting mapping is GPT-6 Luna at low effort for narrow work and medium effort for ordinary work, GPT-6 Sol for hard questions, and GPT-6 Astra for exceptional reasoning. It is a heuristic based on capabilities, not a benchmark or verified price ranking. The installed CLI's bundled catalog contains these IDs and the selected reasoning levels as of September 28, 2026. Account availability can differ; the skill checks the host's exposed choices before using them.
 
 The September 28 catalog and [official model list](https://developers.openai.com/api/docs/models) expose GPT-6 Sol, Luna, and Astra, but no `gpt-6-terra`. Do not invent that ID or silently substitute another model for an explicit user pin.
 
 The parent keeps its selected model. In the interactive CLI, `/model` opens the model and effort picker; `/status` verifies the selection. A new CLI session can start with:
 
 ```powershell
-codex -m gpt-5.6-terra -c 'model_reasoning_effort="medium"'
+codex -m gpt-6-luna -c 'model_reasoning_effort="medium"'
 ```
 
-Use that example only if Terra is available to your account and appropriate for your workload. The skill works with another parent model too. In a desktop client, use its model picker. A prose statement such as “switching to Luna” does not switch anything.
+Use that example only if Luna is available to your account and appropriate for your workload. The skill works with another GPT-6 parent model too. It does not fall back to older models; if the parent uses an older model, select GPT-6 before running the routed task. In a desktop client, use its model picker. A prose statement such as “switching to Luna” does not switch anything.
 
 When a host supports child model overrides, the skill requests them through its real delegation tools. When it only exposes custom agents, it uses suitable roles already configured. When it exposes neither, routing becomes advisory and work stays on the current model. No custom agent configuration is required on hosts with direct model overrides.
 
