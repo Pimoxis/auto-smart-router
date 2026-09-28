@@ -1,0 +1,13 @@
+{
+  "agent": "sol6_check",
+  "model": "gpt-6-sol",
+  "effort": "high",
+  "usage": {
+    "input_tokens": 178328,
+    "cached_input_tokens": 162432,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1799,
+    "reasoning_output_tokens": 835,
+    "total_tokens": 180127
+  }
+}

@@ -34,7 +34,9 @@ That is an instruction preference, not a runtime hook. Higher-priority host rest
 
 ## Models and controls
 
-The starting mapping is Luna for narrow work, Terra for ordinary work, Sol for hard questions, and Astra for exceptional reasoning. It is a heuristic based on capabilities, not a benchmark or verified price ranking. The installed CLI's bundled catalog contained all four model IDs and their low/medium/high effort options on September 5, 2026. Account availability can differ; the skill checks the host's exposed choices before using them.
+The starting mapping is GPT-5.6 Luna for narrow work, GPT-5.6 Terra for ordinary work, GPT-6 Sol for hard questions, and GPT-6 Astra for exceptional reasoning. It is a heuristic based on capabilities, not a benchmark or verified price ranking. The installed CLI's bundled catalog contains these IDs and the selected reasoning levels as of September 28, 2026. Account availability can differ; the skill checks the host's exposed choices before using them.
+
+The September 28 catalog and [official model list](https://developers.openai.com/api/docs/models) expose GPT-6 Sol, Luna, and Astra, but no `gpt-6-terra`. Do not invent that ID or silently substitute another model for an explicit user pin.
 
 The parent keeps its selected model. In the interactive CLI, `/model` opens the model and effort picker; `/status` verifies the selection. A new CLI session can start with:
 

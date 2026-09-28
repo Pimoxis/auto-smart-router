@@ -1,5 +1,17 @@
 # Live routing test
 
+## September 28, 2026: GPT-6 Sol update
+
+The hard-question preference was upgraded to `gpt-6-sol` / high. A fresh `sol6_check` worker ran successfully with that exact model and effort, confirmed from local session metadata. It independently diagnosed the three queue/payment crash cases and proposed durable pending state, retained stock reservations, stable provider idempotency, and recovery. This is a bounded reasoning check, not a running payment-system test.
+
+Three policy checks also passed: exact CSV totals should use local tools, an explicit no-subagent request stays local, and an unavailable `gpt-6-terra` pin must not be silently substituted. These were response-level checks; no invalid model request was sent. The existing executable invoice checks passed for both recorded outputs.
+
+Evidence: `routing-tests/sol6-check.md` and `routing-tests/sol6-usage.json`. The new worker recorded 178,328 input tokens (162,432 cached) and 1,799 output tokens, totaling 180,127 across calls. This does not establish cost savings. The bundled YAML validator still lacked PyYAML; the repository's standard-library package checks are used instead.
+
+The current [official model list](https://developers.openai.com/api/docs/models) and installed catalog contain GPT-6 Sol, Luna, and Astra, but no GPT-6 Terra. Historical results below remain unchanged and refer to the models actually used on September 5.
+
+## September 5, 2026: original tests
+
 Tested locally on September 5, 2026. These are small behavioral checks, not cost or performance benchmarks.
 
 ## Setup and evidence

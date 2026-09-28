@@ -31,7 +31,7 @@ The model names below are starting preferences, not a price ranking or guarantee
 | Tiny answer, short rewrite, known file lookup, small edit | Parent directly; no handoff | Current model |
 | Substantial, well-specified extraction, classification, formatting, repetitive edits, or narrow source gathering | One bounded worker if the handoff is worthwhile | `gpt-5.6-luna` / low |
 | Ordinary multi-step drafting, analysis, implementation, document preparation, or planning | Parent directly; independent medium-complexity work may use a worker | `gpt-5.6-terra` / medium |
-| Ambiguous synthesis, difficult diagnosis, conflicting evidence, subtle logic, or consequential design | Solve the hard question with a capable model; avoid delegating the routine remainder to it | `gpt-5.6-sol` / high |
+| Ambiguous synthesis, difficult diagnosis, conflicting evidence, subtle logic, or consequential design | Solve the hard question with a capable model; avoid delegating the routine remainder to it | `gpt-6-sol` / high |
 | Exceptionally difficult cross-domain reasoning or a hard question still unresolved after an evidence-based attempt | Narrow escalation if the parent is not already equally capable | `gpt-6-astra` / high |
 
 Do not select by keywords alone. A medical appointment email can be a simple rewrite; evaluating treatment evidence is consequential analysis. A long document can be easy extraction or difficult reconciliation. A spreadsheet can contain formatting or a financially consequential calculation.
