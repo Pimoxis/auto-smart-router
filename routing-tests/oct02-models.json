@@ -1,0 +1,12 @@
+[
+  {
+    "agent": "sol61_check",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high"
+  },
+  {
+    "agent": "luna_high_check",
+    "model": "gpt-6-luna",
+    "reasoning_effort": "high"
+  }
+]

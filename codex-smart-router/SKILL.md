@@ -24,14 +24,14 @@ Read enough of the actual task and inputs to understand its constraints before r
 
 Before delegating, check whether an available deterministic tool can finish the work directly. Exact CSV totals, sorting, filtering, and known-format transformations normally belong in a short local script or existing tool, not another model. Input length alone does not justify a worker; delegate extraction when interpreting the content actually requires model judgment.
 
-The model names below are starting preferences, not a price ranking or guaranteed availability. Select only `gpt-6-luna`, `gpt-6-sol`, or `gpt-6-astra`; do not fall back to older generations. Respect explicit model pins without silent substitution. If none of these models is available, report the limitation. If the parent is running an older model, request a supported GPT-6 selection through the model picker before executing the routed task; do not claim this skill can change the parent by itself.
+The model names below are starting preferences, not a price ranking or guaranteed availability. Select only `gpt-6-luna`, `gpt-6.1-sol`, or `gpt-6-astra`; do not fall back to older generations. Respect explicit model pins without silent substitution. If none of these models is available, report the limitation. If the parent is running an older model, request a supported GPT-6 selection through the model picker before executing the routed task; do not claim this skill can change the parent by itself.
 
 | Work | Preferred path | Starting model / effort when selectable |
 | --- | --- | --- |
 | Tiny answer, short rewrite, known file lookup, small edit | Parent directly; no handoff | Current supported GPT-6 model |
-| Substantial, well-specified extraction, classification, formatting, repetitive edits, or narrow source gathering | One bounded worker if the handoff is worthwhile | `gpt-6-luna` / low |
-| Ordinary multi-step drafting, analysis, implementation, document preparation, or planning | Parent directly; independent medium-complexity work may use a worker | `gpt-6-luna` / medium |
-| Ambiguous synthesis, difficult diagnosis, conflicting evidence, subtle logic, or consequential design | Solve the hard question with a capable model; avoid delegating the routine remainder to it | `gpt-6-sol` / high |
+| Substantial, well-specified extraction, classification, formatting, repetitive edits, or narrow source gathering | One bounded worker if the handoff is worthwhile | `gpt-6-luna` / medium |
+| Ordinary multi-step drafting, analysis, implementation, document preparation, or planning | Parent directly; independent medium-complexity work may use a worker | `gpt-6-luna` / high |
+| Ambiguous synthesis, difficult diagnosis, conflicting evidence, subtle logic, or consequential design | Solve the hard question with a capable model; avoid delegating the routine remainder to it | `gpt-6.1-sol` / high |
 | Exceptionally difficult cross-domain reasoning or a hard question still unresolved after an evidence-based attempt | Narrow escalation if the parent is not already equally capable | `gpt-6-astra` / high |
 
 Do not select by keywords alone. A medical appointment email can be a simple rewrite; evaluating treatment evidence is consequential analysis. A long document can be easy extraction or difficult reconciliation. A spreadsheet can contain formatting or a financially consequential calculation.

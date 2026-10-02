@@ -21,12 +21,12 @@ Use $codex-smart-router for this task: [your task].
 | Work | Preferred model / reasoning |
 | --- | --- |
 | Small tasks and exact operations handled by tools | Current GPT-6 main-chat model |
-| Bounded work requiring simple model interpretation | GPT-6 Luna / Low |
-| Ordinary multi-step work | Current GPT-6 parent; GPT-6 Luna / Medium for suitable independent work |
-| Hard diagnosis, ambiguous synthesis, or consequential design | GPT-6 Sol / High |
+| Bounded work requiring simple model interpretation | GPT-6 Luna / Medium |
+| Ordinary multi-step work | Current GPT-6 parent; GPT-6 Luna / High for suitable independent work |
+| Hard diagnosis, ambiguous synthesis, or consequential design | GPT-6.1 Sol / High |
 | Exceptionally difficult reasoning | GPT-6 Astra / High |
 
-Only GPT-6 Luna, Sol, and Astra are selected; no older-model fallback. These are preferences, subject to available tools, model access, and explicit user choices. The skill can select supported child models; it does not automatically switch the main chat's model. It preserves existing service-tier settings.
+Only GPT-6 Luna, GPT-6.1 Sol, and GPT-6 Astra are selected; no older-model fallback. These are preferences, subject to available tools, model access, and explicit user choices. The skill can select supported child models; it does not automatically switch the main chat's model. It preserves existing service-tier settings.
 
 ## Validation
 

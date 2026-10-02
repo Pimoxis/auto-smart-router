@@ -17,8 +17,12 @@ assert 0 < len(metadata["description"]) <= 1024
 assert not any(char in metadata["description"] for char in "<>\n")
 assert "TODO" not in text
 assert set(re.findall(r"`(gpt-[a-z0-9.-]+)`", text)) == {
-    "gpt-6-luna", "gpt-6-sol", "gpt-6-astra"
+    "gpt-6-luna", "gpt-6.1-sol", "gpt-6-astra"
 }, "Active routing must use only the approved GPT-6 models"
+assert re.findall(r"\| `(gpt-[a-z0-9.-]+)` / (\w+) \|", text) == [
+    ("gpt-6-luna", "medium"), ("gpt-6-luna", "high"),
+    ("gpt-6.1-sol", "high"), ("gpt-6-astra", "high")
+], "Routing table does not match the requested models and reasoning levels"
 for target in re.findall(r"\]\(([^)]+)\)", body):
     if "://" not in target:
         assert (skill / target).is_file(), target

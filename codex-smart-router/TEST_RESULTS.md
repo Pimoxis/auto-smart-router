@@ -1,5 +1,16 @@
 # Live routing test
 
+## October 2, 2026: Sol 6.1 and increased Luna effort
+
+Active preferences now use GPT-6 Luna / medium for narrow work, GPT-6 Luna / high for ordinary work, GPT-6.1 Sol / high for hard questions, and GPT-6 Astra / high for exceptional reasoning. Historical test sections below retain their original model assignments.
+
+- `sol61_check` ran on `gpt-6.1-sol` / high. It read the installed skill, reproduced all four assignments, rejected an older-Sol fallback, and chose deterministic tools for exact totals. Its independent crash-recovery analysis identified unfinished payment work, ambiguous external outcomes, durable pending state, guarded transitions, stock retention, and provider idempotency requirements. This was a reasoning smoke test, not an implemented payment-system test.
+- `luna_high_check` ran on `gpt-6-luna` / high. It read the same installed skill, reproduced all four assignments, and used PowerShell directly on the 120-row invoice fixture. The independent verifier matched every count, sum, void ID, and total: 110 non-void rows and 922,735 cents. No child agents were spawned by either test worker.
+- Local session metadata confirmed both models and high effort; evidence is in `routing-tests/oct02-models.json`. Answers are in `sol61-check.md` and `luna-high-check.md`; numerical output is in `extraction-luna-high.json` in that same folder.
+- The package check now validates the exact ordered model/effort pairs, allowed IDs, metadata, references, and source/ZIP equality. The installed copy was synchronized before live tests to avoid the stale-copy issue from September 28.
+
+The installed catalog and [official Sol 6.1 documentation](https://developers.openai.com/api/docs/models/gpt-6.1-sol) confirmed the new ID and reasoning support. Luna Medium was already exercised on September 28 and was not rerun in this update. These explicit model smoke tests do not establish automatic escalation, per-account availability, or cost savings.
+
 ## September 28, 2026: final GPT-6-only mapping
 
 After the user clarified that Luna was intended instead of Terra, active routing now uses GPT-6 Luna / low for narrow work, GPT-6 Luna / medium for ordinary work, GPT-6 Sol / high for hard questions, and GPT-6 Astra / high for exceptional reasoning. Older-generation fallback is disallowed. A skill still cannot silently switch an older parent model; it requests a supported GPT-6 selection before routed execution.

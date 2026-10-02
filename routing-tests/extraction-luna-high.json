@@ -1,0 +1,13 @@
+{
+  "departments": {
+    "Sales": { "count": 37, "amount_cents": 307155 },
+    "Research": { "count": 36, "amount_cents": 301986 },
+    "Operations": { "count": 37, "amount_cents": 313594 }
+  },
+  "void_ids": [
+    "INV-011", "INV-022", "INV-033", "INV-044", "INV-055",
+    "INV-066", "INV-077", "INV-088", "INV-099", "INV-110"
+  ],
+  "grand_total_cents": 922735,
+  "paid_count": 110
+}
